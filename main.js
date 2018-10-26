@@ -320,7 +320,7 @@ if (element.getContext) {
     canvas;
 
     var alienpic = new Image();
-    alienpic.src = "pumpkin.png"
+    alienpic.src = "sprite.png"
 
     var pic = new Image();
     pic.src = "sprite.png";
