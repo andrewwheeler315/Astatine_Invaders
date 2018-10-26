@@ -8,7 +8,7 @@ var Alien = function(aType, aLine, aCol) {
     this.width = 28;
     this.positionX = 100 + this.width * this.column;
     this.positionY = 100 + 30 * this.line;
-    this.direction = 1;
+    this.direction = 10;
     this.state = 0;
 
     this.changeState = function() {
@@ -44,7 +44,7 @@ var Alien = function(aType, aLine, aCol) {
     this.draw = function() {
         if (this.alive) {
             canvas.drawImage(
-                pic,
+                alienpic,
                 this.width * (this.type - 1),
                 this.state,
                 this.width,
@@ -91,8 +91,8 @@ Gun = {
         this.draw();
         this.to_Left();
         this.to_Right();
-        setInterval("Gun.to_Left()", 30);
-        setInterval("Gun.to_Right()", 30);
+        setInterval("Gun.to_Left()", 10);
+        setInterval("Gun.to_Right()", 10);
     },
 
     draw: function() {
@@ -126,8 +126,8 @@ Gun = {
     ray: {
         positionX: 0,
         positionY: 465,
-        length: 5,
-        speed: 15,
+        length: 20,
+        speed: -1000,
         animation: null,
         active: false,
         create: function() {
@@ -148,7 +148,7 @@ Gun = {
         draw: function() {
             if (this.active) {
                 canvas.beginPath();
-                canvas.strokeStyle = "white";
+                canvas.strokeStyle = "red               ";
                 canvas.lineWidth = 2;
                 canvas.moveTo(this.positionX, this.positionY);
                 canvas.lineTo(this.positionX, this.positionY + this.length);
@@ -162,7 +162,7 @@ Gun = {
             }
         },
         destroy: function() {
-            this.positionY = 465;
+            this.positionY = 450;
             this.active = false;
             clearInterval(this.animation);
             this.animation = null;
@@ -317,7 +317,10 @@ Game = {
 var element = document.getElementById("aliensCanvas");
 if (element.getContext) {
     var canvas = element.getContext("2d");
-    canvas
+    canvas;
+
+    var alienpic = new Image();
+    alienpic.src = "pumpkin.png"
 
     var pic = new Image();
     pic.src = "sprite.png";
